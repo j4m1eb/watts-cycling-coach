@@ -118,7 +118,7 @@ export default function Dashboard() {
             <div style={styles.topbarRight}>
               <div style={styles.statusPill}>
                 <span style={{ color: form.color }}>●</span>
-                <span style={{ fontFamily: 'DM Mono', fontSize: 12 }}>{form.label}</span>
+                <span style={{ fontFamily: 'JetBrains Mono', fontSize: 12 }}>{form.label}</span>
               </div>
               <div style={styles.metricChip}>
                 <span style={styles.metricLabel}>CTL</span>
@@ -214,12 +214,12 @@ function Overview({ data, form, today }) {
       </div>
 
       {/* Camp info */}
-      <div style={{ ...styles.card, borderColor: '#c8f00040' }}>
+      <div style={{ ...styles.card, borderColor: '#00d4aa40' }}>
         <div style={styles.cardLabel}>CALPE CAMP</div>
-        <div style={{ fontFamily: 'DM Mono', fontSize: 22, color: '#c8f000', marginBottom: 8 }}>
+        <div style={{ fontFamily: 'JetBrains Mono', fontSize: 22, color: '#00d4aa', marginBottom: 8 }}>
           {daysUntilCalpe()} days
         </div>
-        <div style={{ fontSize: 13, color: '#9898a8', lineHeight: 1.7 }}>
+        <div style={{ fontSize: 16, color: '#9898a8', lineHeight: 1.7 }}>
           <div>🛫 Depart Feb 20</div>
           <div>🚴 Train Feb 21 – Mar 2 (10 days)</div>
           <div>🛬 Return Mar 3</div>
@@ -235,10 +235,10 @@ function Overview({ data, form, today }) {
 function Metric({ label, value, unit, color }) {
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontFamily: 'DM Mono', fontSize: 26, fontWeight: 500, color: color || '#e6e6ea' }}>
+      <div style={{ fontFamily: 'JetBrains Mono', fontSize: 26, fontWeight: 500, color: color || '#e6e6ea' }}>
         {value}{unit}
       </div>
-      <div style={{ fontSize: 11, color: '#6b6b7a', letterSpacing: '0.5px', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 17, color: '#6b6b7a', letterSpacing: '0.5px', marginTop: 2 }}>{label}</div>
     </div>
   )
 }
@@ -246,8 +246,8 @@ function Metric({ label, value, unit, color }) {
 function ActStat({ label, value }) {
   return (
     <div style={{ textAlign: 'center', background: '#1e1e24', borderRadius: 6, padding: '8px 12px' }}>
-      <div style={{ fontFamily: 'DM Mono', fontSize: 18, color: '#e6e6ea' }}>{value}</div>
-      <div style={{ fontSize: 10, color: '#6b6b7a', marginTop: 2, letterSpacing: '0.5px' }}>{label}</div>
+      <div style={{ fontFamily: 'JetBrains Mono', fontSize: 18, color: '#e6e6ea' }}>{value}</div>
+      <div style={{ fontSize: 16, color: '#6b6b7a', marginTop: 2, letterSpacing: '0.5px' }}>{label}</div>
     </div>
   )
 }
@@ -255,8 +255,8 @@ function ActStat({ label, value }) {
 function Loader() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 300, flexDirection: 'column', gap: 16 }}>
-      <div style={{ width: 40, height: 40, border: '2px solid #1e1e24', borderTopColor: '#c8f000', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-      <div style={{ fontFamily: 'DM Mono', fontSize: 12, color: '#6b6b7a', letterSpacing: '2px' }}>LOADING INTERVALS.ICU DATA</div>
+      <div style={{ width: 40, height: 40, border: '2px solid #1e1e24', borderTopColor: '#00d4aa', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      <div style={{ fontFamily: 'JetBrains Mono', fontSize: 12, color: '#6b6b7a', letterSpacing: '2px' }}>LOADING INTERVALS.ICU DATA</div>
       <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
     </div>
   )
@@ -264,10 +264,10 @@ function Loader() {
 
 function ErrorMsg({ msg }) {
   return (
-    <div style={{ background: '#ff3b3b15', border: '1px solid #ff3b3b40', borderRadius: 10, padding: 20, margin: 20, fontFamily: 'DM Mono', fontSize: 13 }}>
+    <div style={{ background: '#ff3b3b15', border: '1px solid #ff3b3b40', borderRadius: 10, padding: 20, margin: 20, fontFamily: 'JetBrains Mono', fontSize: 16 }}>
       <div style={{ color: '#ff3b3b', marginBottom: 8 }}>● API CONNECTION ERROR</div>
       <div style={{ color: '#9898a8' }}>{msg}</div>
-      <div style={{ marginTop: 12, color: '#6b6b7a', fontSize: 11 }}>
+      <div style={{ marginTop: 12, color: '#6b6b7a', fontSize: 17 }}>
         Check that INTERVALS_API_KEY and INTERVALS_ATHLETE_ID are set in your Vercel environment variables.
       </div>
     </div>
@@ -310,27 +310,27 @@ const styles = {
   },
 
   logo: { padding: '24px 20px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)' },
-  logoText: { fontFamily: 'Bebas Neue', fontSize: 30, letterSpacing: 4, color: '#c8f000', lineHeight: 1 },
-  logoSub: { fontFamily: 'DM Mono', fontSize: 9, letterSpacing: 2, color: '#6b6b7a', marginTop: 3 },
+  logoText: { fontFamily: 'Inter', fontSize: 30, letterSpacing: 4, color: '#00d4aa', lineHeight: 1 },
+  logoSub: { fontFamily: 'JetBrains Mono', fontSize: 12, letterSpacing: 2, color: '#6b6b7a', marginTop: 3 },
 
   nav: { padding: '16px 0', flex: 1 },
 
   navItem: {
     display: 'flex', alignItems: 'center', gap: 10,
     width: '100%', padding: '9px 20px',
-    fontSize: 13, color: '#6b6b7a',
+    fontSize: 16, color: '#6b6b7a',
     borderLeft: '2px solid transparent',
     transition: 'all 0.15s', textAlign: 'left',
     letterSpacing: '0.3px',
   },
 
   navActive: {
-    color: '#c8f000',
-    borderLeftColor: '#c8f000',
+    color: '#00d4aa',
+    borderLeftColor: '#00d4aa',
     background: 'rgba(200,240,0,0.1)',
   },
 
-  navIcon: { fontSize: 14, width: 18, textAlign: 'center' },
+  navIcon: { fontSize: 17, width: 18, textAlign: 'center' },
 
   sidebarFooter: {
     padding: '16px 16px 20px',
@@ -340,13 +340,13 @@ const styles = {
   athleteCard: { display: 'flex', gap: 10, alignItems: 'center', marginBottom: 14 },
   avatar: {
     width: 36, height: 36, borderRadius: '50%',
-    background: 'linear-gradient(135deg, #c8f000, #7aff00)',
+    background: 'linear-gradient(135deg, #00d4aa, #7aff00)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    fontSize: 11, fontWeight: 600, color: '#09090b', flexShrink: 0,
-    fontFamily: 'DM Mono',
+    fontSize: 17, fontWeight: 600, color: '#09090b', flexShrink: 0,
+    fontFamily: 'JetBrains Mono',
   },
-  athleteName: { fontSize: 13, fontWeight: 500, color: '#e6e6ea' },
-  athleteMeta: { fontSize: 10, color: '#6b6b7a', fontFamily: 'DM Mono', marginTop: 1 },
+  athleteName: { fontSize: 16, fontWeight: 500, color: '#e6e6ea' },
+  athleteMeta: { fontSize: 16, color: '#6b6b7a', fontFamily: 'JetBrains Mono', marginTop: 1 },
 
   raceCountdown: {
     background: '#1e1e24',
@@ -354,10 +354,10 @@ const styles = {
     padding: '10px 12px',
     border: '1px solid rgba(255,255,255,0.07)',
   },
-  raceLabel: { fontFamily: 'DM Mono', fontSize: 9, letterSpacing: 2, color: '#6b6b7a', marginBottom: 4 },
-  raceName: { fontSize: 13, fontWeight: 500, color: '#e6e6ea', marginBottom: 2 },
-  raceDate: { fontFamily: 'DM Mono', fontSize: 11, color: '#9898a8' },
-  raceTSB: { fontFamily: 'DM Mono', fontSize: 11, marginTop: 4 },
+  raceLabel: { fontFamily: 'JetBrains Mono', fontSize: 12, letterSpacing: 2, color: '#6b6b7a', marginBottom: 4 },
+  raceName: { fontSize: 16, fontWeight: 500, color: '#e6e6ea', marginBottom: 2 },
+  raceDate: { fontFamily: 'JetBrains Mono', fontSize: 17, color: '#9898a8' },
+  raceTSB: { fontFamily: 'JetBrains Mono', fontSize: 17, marginTop: 4 },
 
   main: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' },
 
@@ -368,7 +368,7 @@ const styles = {
     background: '#111113', flexShrink: 0,
   },
 
-  pageTitle: { fontFamily: 'Bebas Neue', fontSize: 20, letterSpacing: 2, color: '#e6e6ea' },
+  pageTitle: { fontFamily: 'Inter', fontSize: 20, letterSpacing: 2, color: '#e6e6ea' },
   topbarRight: { display: 'flex', gap: 8, alignItems: 'center' },
 
   statusPill: {
@@ -383,8 +383,8 @@ const styles = {
     background: '#1e1e24', borderRadius: 6, padding: '4px 10px',
     border: '1px solid rgba(255,255,255,0.07)',
   },
-  metricLabel: { fontSize: 10, color: '#6b6b7a', fontFamily: 'DM Mono', letterSpacing: 1 },
-  metricVal: { fontSize: 13, fontFamily: 'DM Mono', fontWeight: 500, color: '#e6e6ea' },
+  metricLabel: { fontSize: 16, color: '#6b6b7a', fontFamily: 'JetBrains Mono', letterSpacing: 1 },
+  metricVal: { fontSize: 16, fontFamily: 'JetBrains Mono', fontWeight: 500, color: '#e6e6ea' },
   metricPos: { borderColor: 'rgba(0,200,150,0.3)' },
   metricNeg: { borderColor: 'rgba(255,122,0,0.3)' },
 
@@ -393,7 +393,7 @@ const styles = {
     padding: '10px 16px',
     borderRadius: 8,
     border: '1px solid',
-    fontFamily: 'DM Mono',
+    fontFamily: 'JetBrains Mono',
     fontSize: 12,
     flexShrink: 0,
   },
@@ -417,16 +417,16 @@ const styles = {
   cardWide: { gridColumn: 'span 2' },
 
   cardLabel: {
-    fontFamily: 'DM Mono', fontSize: 9, letterSpacing: 2,
+    fontFamily: 'JetBrains Mono', fontSize: 12, letterSpacing: 2,
     color: '#6b6b7a', marginBottom: 12, textTransform: 'uppercase',
   },
 
-  bigNumber: { fontFamily: 'Bebas Neue', fontSize: 40, letterSpacing: 2, marginBottom: 16 },
+  bigNumber: { fontFamily: 'Inter', fontSize: 40, letterSpacing: 2, marginBottom: 16 },
 
   tsbRow: { display: 'flex', gap: 32, marginBottom: 8 },
-  formRisk: { fontSize: 12, color: '#ff7a00', marginTop: 4, fontFamily: 'DM Mono' },
+  formRisk: { fontSize: 12, color: '#ff7a00', marginTop: 4, fontFamily: 'JetBrains Mono' },
 
-  actName: { fontSize: 15, fontWeight: 500, color: '#e6e6ea', marginBottom: 4 },
-  actMeta: { fontSize: 12, color: '#6b6b7a', marginBottom: 12, fontFamily: 'DM Mono' },
+  actName: { fontSize: 18, fontWeight: 500, color: '#e6e6ea', marginBottom: 4 },
+  actMeta: { fontSize: 12, color: '#6b6b7a', marginBottom: 12, fontFamily: 'JetBrains Mono' },
   actStats: { display: 'flex', gap: 8, flexWrap: 'wrap' },
 }
