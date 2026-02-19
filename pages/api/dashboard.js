@@ -17,16 +17,16 @@ export default async function handler(req, res) {
       fetch(`${BASE_URL}/athlete/${ATHLETE_ID}`, { headers }),
     ])
 
-    // CTL/ATL/TSB lives in the wellness endpoint as icu_ctl, icu_atl
+    // CTL/ATL/TSB — field names confirmed from API: ctl, atl (not icu_ctl/icu_atl)
     let pmc = []
     if (wellnessRes.status === 'fulfilled' && wellnessRes.value.ok) {
       const raw = await wellnessRes.value.json()
       pmc = (Array.isArray(raw) ? raw : []).map(d => ({
         date: d.id,
-        ctl: Math.round(d.icu_ctl || 0),
-        atl: Math.round(d.icu_atl || 0),
-        tsb: Math.round((d.icu_ctl || 0) - (d.icu_atl || 0)),
-        tss: Math.round(d.icu_training_load || 0),
+        ctl: Math.round(d.ctl || 0),
+        atl: Math.round(d.atl || 0),
+        tsb: Math.round((d.ctl || 0) - (d.atl || 0)),
+        tss: Math.round(d.ctlLoad || 0),
       })).filter(d => d.ctl > 0 || d.atl > 0)
     }
 
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       monday.setDate(d.getDate() - ((d.getDay() + 6) % 7))
       const weekKey = monday.toISOString().split('T')[0]
       if (!weekMap[weekKey]) weekMap[weekKey] = { week: weekKey, tss: 0, rides: 0, hours: 0 }
-      weekMap[weekKey].tss += Math.round(act.icu_training_load || act.tss || 0)
+      weekMap[weekKey].tss += Math.round(act.icu_training_load || 0)
       weekMap[weekKey].rides += 1
       weekMap[weekKey].hours = Math.round(((weekMap[weekKey].hours * 3600) + (act.elapsed_time || act.moving_time || 0)) / 3600 * 10) / 10
     })
@@ -55,14 +55,9 @@ export default async function handler(req, res) {
     let athlete = { ftp: 250 }
     if (athleteRes.status === 'fulfilled' && athleteRes.value.ok) {
       const a = await athleteRes.value.json()
-      athlete = {
-        name: a.name || 'Jamie',
-        ftp: a.ftp || 250,
-        weight: a.weight,
-      }
+      athlete = { name: a.name || 'Jamie', ftp: a.ftp || 250, weight: a.weight }
     }
 
-    // Latest values
     const today = new Date().toISOString().split('T')[0]
     const latest = pmc.filter(d => d.date <= today).slice(-1)[0] || {}
 

@@ -7,28 +7,28 @@ export default async function handler(req, res) {
     const from = oldest.toISOString().split('T')[0]
     const to = new Date().toISOString().split('T')[0]
 
-    const url = `${BASE_URL}/athlete/${ATHLETE_ID}/wellness?oldest=${from}&newest=${to}`
-    const response = await fetch(url, { headers: getAuthHeader() })
+    const response = await fetch(
+      `${BASE_URL}/athlete/${ATHLETE_ID}/wellness?oldest=${from}&newest=${to}`,
+      { headers: getAuthHeader() }
+    )
 
     if (!response.ok) {
-      const body = await response.text()
-      console.error('[wellness] Failed:', response.status, body)
-      // Return empty array rather than crashing the whole page
-      return res.status(200).json({ wellness: [], debug: { status: response.status, url, body } })
+      return res.status(200).json({ wellness: [] })
     }
 
     const raw = await response.json()
 
+    // Confirmed field names from API:
+    // restingHR = RHR, hrvSDNN = HRV (hrv field is always null), weight = weight
     const wellness = (Array.isArray(raw) ? raw : []).map(w => ({
       date: w.id,
       rhr: w.restingHR || null,
-      hrv: w.hrv || null,
+      hrv: w.hrvSDNN || null,
       weight: w.weight || null,
     })).filter(w => w.rhr || w.hrv || w.weight)
 
     res.status(200).json({ wellness })
   } catch (err) {
-    console.error('[wellness] Exception:', err.message)
-    res.status(200).json({ wellness: [], debug: { error: err.message } })
+    res.status(200).json({ wellness: [] })
   }
 }
