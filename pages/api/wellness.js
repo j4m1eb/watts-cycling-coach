@@ -7,19 +7,21 @@ export default async function handler(req, res) {
     const from = oldest.toISOString().split('T')[0]
     const to = new Date().toISOString().split('T')[0]
 
-    const url = `${BASE_URL}/athlete/${ATHLETE_ID}/wellness?oldest=${from}&newest=${to}`
-    const response = await fetch(url, { headers: getAuthHeader() })
+    const response = await fetch(
+      `${BASE_URL}/athlete/${ATHLETE_ID}/wellness?oldest=${from}&newest=${to}`,
+      { headers: getAuthHeader() }
+    )
 
     if (!response.ok) {
       return res.status(response.status).json({ error: `Intervals API error: ${response.status}` })
     }
 
-    const data = await response.json()
+    const raw = await response.json()
 
-    // Normalise to { date, rhr, hrv, weight } array
-    const wellness = (Array.isArray(data) ? data : []).map(w => ({
-      date: w.id || w.date,
-      rhr: w.restingHR || w.rhr || null,
+    // Field names from Intervals.icu wellness endpoint
+    const wellness = (Array.isArray(raw) ? raw : []).map(w => ({
+      date: w.id,
+      rhr: w.restingHR || null,
       hrv: w.hrv || null,
       weight: w.weight || null,
     })).filter(w => w.rhr || w.hrv || w.weight)

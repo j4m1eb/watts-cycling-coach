@@ -237,7 +237,7 @@ export default function Dashboard() {
                   borderRadius: 'var(--radius-sm)',
                   color: 'var(--text-muted)',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 11,
+                  fontSize: 13,
                   padding: '6px 12px',
                   cursor: 'pointer',
                   transition: 'color var(--transition)',

@@ -6,7 +6,7 @@ const tooltipStyle = {
   border: '1px solid rgba(255,255,255,0.1)',
   borderRadius: 8,
   padding: '10px 14px',
-  fontFamily: 'JetBrains Mono, monospace',
+  fontFamily: 'DM Sans, sans-serif',
   fontSize: 12,
 }
 
@@ -32,7 +32,7 @@ export default function WeeklyTSSChart({ weeks = [] }) {
     return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
   }
 
-  const tickStyle = { fontFamily: 'JetBrains Mono, monospace', fontSize: 9, fill: '#5a5a6e' }
+  const tickStyle = { fontFamily: 'DM Sans, sans-serif', fontSize: 12, fill: '#5a5a6e' }
 
   return (
     <div className={styles.chartCard}>
@@ -41,7 +41,7 @@ export default function WeeklyTSSChart({ weeks = [] }) {
           <div className={styles.chartCardTitle}>Weekly Training Load</div>
           <div className={styles.chartCardValue}>TSS per Week — {last12.length}w view</div>
         </div>
-        <div className={styles.legendItem} style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#5a5a6e' }}>
+        <div className={styles.legendItem} style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 10, color: '#5a5a6e' }}>
           avg {avg}
         </div>
       </div>

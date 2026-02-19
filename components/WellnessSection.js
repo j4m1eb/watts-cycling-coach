@@ -6,7 +6,7 @@ const tooltipStyle = {
   border: '1px solid rgba(255,255,255,0.1)',
   borderRadius: 6,
   padding: '6px 10px',
-  fontFamily: 'JetBrains Mono, monospace',
+  fontFamily: 'DM Sans, sans-serif',
   fontSize: 11,
   color: '#f0f0f4',
 }
@@ -73,7 +73,7 @@ export default function WellnessSection({ wellness = [] }) {
     <>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionTitle}>Wellness Metrics</span>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#5a5a6e' }}>Last 30 days</span>
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 10, color: '#5a5a6e' }}>Last 30 days</span>
       </div>
       <div className={styles.wellnessGrid}>
         <WellnessSparkCard

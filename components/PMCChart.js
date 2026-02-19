@@ -14,8 +14,8 @@ const tooltipStyle = {
   border: '1px solid rgba(255,255,255,0.1)',
   borderRadius: 8,
   padding: '10px 14px',
-  fontFamily: 'JetBrains Mono, monospace',
-  fontSize: 12,
+  fontFamily: 'DM Sans, sans-serif',
+  fontSize: 13,
 }
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -48,7 +48,7 @@ export default function PMCChart({ data = [] }) {
     return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
   }
 
-  const tickStyle = { fontFamily: 'JetBrains Mono, monospace', fontSize: 10, fill: '#5a5a6e' }
+  const tickStyle = { fontFamily: 'DM Sans, sans-serif', fontSize: 11, fill: '#5a5a6e' }
 
   return (
     <div className={styles.chartCard}>
@@ -86,9 +86,9 @@ export default function PMCChart({ data = [] }) {
           <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'rgba(255,255,255,0.08)', strokeWidth: 1 }} />
           <ReferenceLine y={0} stroke="rgba(255,255,255,0.12)" strokeDasharray="3 3" />
           <ReferenceLine x="2026-02-20" stroke="rgba(74,158,255,0.5)" strokeDasharray="4 4"
-            label={{ value: 'Calpe', fill: '#4a9eff', fontSize: 10, fontFamily: 'JetBrains Mono', position: 'insideTopLeft' }} />
+            label={{ value: 'Calpe', fill: '#4a9eff', fontSize: 12, fontFamily: 'DM Sans', position: 'insideTopLeft' }} />
           <ReferenceLine x="2026-03-08" stroke="rgba(255,69,69,0.5)" strokeDasharray="4 4"
-            label={{ value: 'Race', fill: '#ff4545', fontSize: 10, fontFamily: 'JetBrains Mono', position: 'insideTopLeft' }} />
+            label={{ value: 'Race', fill: '#ff4545', fontSize: 12, fontFamily: 'DM Sans', position: 'insideTopLeft' }} />
           <Line dataKey="ctl" stroke="#4a9eff" strokeWidth={2} dot={false} />
           <Line dataKey="atl" stroke="#ff8c42" strokeWidth={2} dot={false} />
           <Line dataKey="tsb" stroke="#c8f000" strokeWidth={2.5} dot={false} />
